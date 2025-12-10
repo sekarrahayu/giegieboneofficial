@@ -59,6 +59,7 @@ body{
 
 .imageawal{
     margin-top: -100px;
+    width: 100%;
 }
 .catalog-section {
             max-width: 1200px;
@@ -125,6 +126,7 @@ body{
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
+            margin-bottom: 100px;
         }
 
         
@@ -309,6 +311,20 @@ body{
         .indicator.active {
             background-color: #e91e63;
         }
+
+        footer a i {
+            transition: transform 0.2s ease;
+        }
+        
+        footer a:hover i {
+            transform: scale(1.15);   /* membesar 15% */
+        }
+
+        html {
+            scroll-behavior: smooth;
+          }
+          
+        
 
         @media (max-width: 768px) {
             .product-card {

@@ -38,14 +38,14 @@
                                 <path
                                     d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
                             </svg></a>
-                        <div id="icon">
+                        <a href="#footer" id="icon">
                             <svg style="color: #586D43;" xmlns="http://www.w3.org/2000/svg" class="icon"
                                 fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                             </svg>
-                        </div>
-                        <div id="icon" class="icon-cart"><svg style="color: #586D43;" xmlns="http://www.w3.org/2000/svg" class="icon"
+                        </a>
+                        <div id="icon" style="cursor: pointer;"  class="icon-cart"><svg style="color: #586D43;" xmlns="http://www.w3.org/2000/svg" class="icon"
                                 fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708" />
@@ -65,7 +65,7 @@
       <div class="catalog-section">
         <div class="catalog-title-container">
             <h2 class="catalog-title">CATALOG</h2>
-            <div class="catalog-title-underline"></div>
+            <!-- <div class="catalog-title-underline"></div> --> <!-- Removed underline -->
         </div>
         
         <div class="catalog-images">
@@ -81,222 +81,240 @@
  <div class="product-slider-container">
         <div class="slider-title-container">
             <h2 class="slider-title">PREVIEW</h2>
-            <div class="title-underline"></div>
+            <!-- <div class="title-underline"></div> --> <!-- Removed underline -->
         </div>
         
         <div class="slider-wrapper">
             <div class="product-container" id="product-container">
+        
                 <!-- Produk 1 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Ribbon Strapphone</h3>
+                        <p class="product-desc">A cute strapphone featuring a soft ribbon, perfect for a casual and sweet style.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product1.png" alt="Produk 1" class="product-image">
+                        <img src="img/product1.png" alt="Ribbon Strapphone" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 2 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Winx Bracelet</h3>
+                        <p class="product-desc">A Winx-themed bracelet with bright colors for a feminine and cheerful look.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product2.png" alt="Produk 2" class="product-image">
+                        <img src="img/product2.png" alt="Winx Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 7.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 3 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Bloomday Strapphone</h3>
+                        <p class="product-desc">A floral-themed strapphone perfect for a bright, cute, and fresh look.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product3.png" alt="Produk 3" class="product-image">
+                        <img src="img/product3.png" alt="Bloomday Strapphone" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 4 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Cathyx Purple Bracelet</h3>
+                        <p class="product-desc">An elegant purple bracelet featuring charming and stylish details.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product4.png" alt="Produk 4" class="product-image">
+                        <img src="img/product4.png" alt="Cathyx Purple Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 5 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Bellflower Strapphone</h3>
+                        <p class="product-desc">A bellflower-inspired strapphone with soft color tones for a sweet aesthetic.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product5.png" alt="Produk 5" class="product-image">
+                        <img src="img/product5.png" alt="Bellflower Strapphone" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 6 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Fears Bracelet</h3>
+                        <p class="product-desc">A minimalist monochrome bracelet with an edgy and modern vibe.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product6.png" alt="Produk 6" class="product-image">
+                        <img src="img/product6.png" alt="Fears Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 7 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Lanarey Bracelet</h3>
+                        <p class="product-desc">A bracelet with soft color combinations and aesthetic charms.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product7.png" alt="Produk 7" class="product-image">
+                        <img src="img/product7.png" alt="Lanarey Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 8 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Lacroix Bracelet</h3>
+                        <p class="product-desc">A soft-toned bracelet decorated with elegant accessory details.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product8.png" alt="Produk 8" class="product-image">
+                        <img src="img/product8.png" alt="Lacroix Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 7.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 9 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Lowkey Bracelet</h3>
+                        <p class="product-desc">A simple bracelet with neutral tones for a stylish, casual look.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product9.png" alt="Produk 9" class="product-image">
+                        <img src="img/product9.png" alt="Lowkey Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 8.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 10 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Lovaire Bracelet</h3>
+                        <p class="product-desc">A romantic bracelet with pink tones and adorable charms.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product10.png" alt="Produk 10" class="product-image">
+                        <img src="img/product10.png" alt="Lovaire Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 11 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Lover Bracelet</h3>
+                        <p class="product-desc">A love-themed bracelet featuring cute heart charms.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product11.png" alt="Produk 11" class="product-image">
+                        <img src="img/product11.png" alt="Lover Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 12 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Starry Bracelet</h3>
+                        <p class="product-desc">A star-themed bracelet with shiny and glittery accents.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product12.png" alt="Produk 12" class="product-image">
+                        <img src="img/product12.png" alt="Starry Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 5.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 13 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Nyx</h3>
+                        <p class="product-desc">A dark-themed bracelet inspired by a mysterious aesthetic.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product13.png" alt="Produk 13" class="product-image">
+                        <img src="img/product13.png" alt="Nyx" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 14 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Cathyx Pink Bracelet</h3>
+                        <p class="product-desc">A premium pink bracelet decorated with luxurious and elegant details.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product14.png" alt="Produk 14" class="product-image">
+                        <img src="img/product14.png" alt="Cathyx Pink Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 255.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
-
+        
                 <!-- Produk 15 -->
                 <div class="product-card">
                     <div class="product-info">
                         <h3 class="product-title">Blueyshell Bracelet</h3>
+                        <p class="product-desc">A unique bracelet inspired by blue seashell elements.</p>
                     </div>
                     <div class="product-image-container">
-                        <img src="img/product15.png" alt="Produk 15" class="product-image">
+                        <img src="img/product15.png" alt="Blueyshell Bracelet" class="product-image">
                     </div>
                     <div class="product-bottom">
                         <div class="product-price">Rp 6.000</div>
                         <button class="add-product-btn">+</button>
                     </div>
                 </div>
+        
             </div>
-
+        </div>
+        
             <!-- Tombol navigasi -->
             <button class="slider-nav prev" id="product-prev-btn">
                 <i class="fas fa-chevron-left">  </i>
@@ -305,6 +323,52 @@
                 <i class="fas fa-chevron-right"> </i>
             </button>
         </div>
+ </div>
+
+ <!-- Footer -->
+<footer id="footer" style="background-color: white; padding-block: 20px; padding-inline: 50px;">
+    <div style="padding-left: 350px; margin-bottom: -50px; color: black;">
+        <h2>Click the icon</h2>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div style="display: flex; gap: 30px; align-items: center;">
+            <a href="https://wa.me/6285892271272" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <i class="fab fa-whatsapp fa-3x"></i>
+                <span style="font-size: 1.2rem;">WhatsApp</span>
+            </a>
+            <a href="https://www.instagram.com/giegiebone_?igsh=aDdrZHo5ampib2Rm" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <i class="fab fa-instagram fa-3x"></i>
+                <span style="font-size: 1.2rem;">Instagram</span>
+            </a>
+            <a href="https://youtube.com/@giegiebone?si=mmIfqNEFM2gswUTV" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <i class="fab fa-youtube fa-3x"></i>
+                <span style="font-size: 1.2rem;">YouTube</span>
+            </a>
+            <a href="https://www.facebook.com/share/1E29uiJ5nA/" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <i class="fab fa-facebook fa-3x"></i>
+                <span style="font-size: 1.2rem;">Facebook</span>
+            </a>
+            <a href="https://www.tiktok.com/@giegiebone?_t=ZS-8wnDhaZjF9M&_r=1" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <i class="fab fa-tiktok fa-3x"></i>
+                <span style="font-size: 1.2rem;">TikTok</span>
+            </a>
+            <a href="https://shopee.co.id/giegieboneshop?fbclid=PAQ0xDSwKmyrdleHRuA2FlbQIxMQABpyxQBAqVJIw1gf04ww82XDwhwMMiG2uT4Y345n-G40vjCUF0ytt1ojY_y4rM_aem_z__GTiexVCDH35iTpyFE2w" target="_blank" style="color: black; display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <i class="fas fa-shopping-bag fa-3x"></i>
+                <span style="font-size: 1.2rem;">Shopee</span>
+            </a>
+        </div>
+        <div>
+            <iframe 
+                src= "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.9973200008085!2d107.46358027592335!3d-6.3943457625435665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69732814c11963%3A0x8ef503487ed82eca!2sPerum%20Griya%20Cikampek!5e0!3m2!1sid!2sid!4v1748610360103!5m2!1sid!2sid"
+                width="300" 
+                height="200" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</footer>
 
         <!-- Modal Checkout -->
 <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
@@ -319,7 +383,6 @@
         <p>Total: <span id="checkoutTotal">Rp 0</span></p>
       </div>
       <div class="modal-footer" id="checkoutFooter">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-danger" id="clear-cart-btn">Delete All</button>
         <button type="button" class="btn btn-primary">Pay</button>
       </div>
