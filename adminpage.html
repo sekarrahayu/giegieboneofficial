@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin E-Commerce</title>
+    <style>
+      :root{
+        --sage-500: #9CAF88;
+        --sage-600: #88a878;
+        --bg: #ffffff;
+        --muted: #6b6b6b;
+        --accent: var(--sage-500);
+      }
+      *{box-sizing:border-box;font-family:Segoe UI, Roboto, Helvetica, Arial, sans-serif}
+      body{margin:0;background:var(--bg);color:#222}
+      header{background:linear-gradient(90deg, var(--sage-500), var(--sage-600));color:#fff;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+      header h1{margin:0;font-size:1.15rem}
+      .container{display:flex;height:calc(100vh - 64px)}
+      aside{width:240px;background:#f7faf7;border-right:1px solid #e6efe6;padding:1rem}
+      nav a{display:block;padding:.6rem .6rem;border-radius:6px;color:#163f2e;text-decoration:none;margin-bottom:.35rem}
+      nav a.active, nav a:hover{background:var(--accent);color:#fff}
+      main{flex:1;padding:1rem;overflow:auto}
+      .card{background:#fff;border:1px solid #e6efe6;border-radius:8px;padding:1rem;margin-bottom:1rem;box-shadow:0 1px 2px rgba(0,0,0,0.02)}
+      .row{display:flex;gap:1rem}
+      .col{flex:1}
+      .btn{background:var(--accent);color:#fff;padding:.5rem .75rem;border-radius:6px;border:none;cursor:pointer}
+      .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+      table{width:100%;border-collapse:collapse}
+      th,td{padding:.5rem .6rem;border-bottom:1px solid #f0f4f0;text-align:left}
+      th{background:#fbfff9;color:var(--muted);font-weight:600}
+      .muted{color:var(--muted);font-size:.95rem}
+      .form-row{display:flex;gap:.5rem;margin-bottom:.5rem}
+      input,select,textarea{padding:.45rem .5rem;border:1px solid #e0e8df;border-radius:6px;flex:1}
+      .small{width:140px}
+      .toolbar{display:flex;gap:.5rem;align-items:center}
+      .stats{display:flex;gap:1rem}
+      .stat{background:linear-gradient(180deg,#fff,#fbfff9);padding:.6rem;border-radius:8px;flex:1;border:1px solid #eef6ef}
+      .right{margin-left:auto}
+      .text-sm{font-size:.9rem}
+      .text-muted{color:var(--muted)}
+      .flex-center{display:flex;align-items:center;gap:.5rem}
+      /* responsive */
+      @media(max-width:800px){aside{display:none}.container{flex-direction:column;height:auto}}
+      /* modal */
+      #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);align-items:center;justify-content:center}
+      #modal > div{max-height:90vh;overflow:auto}
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Admin Panel — Toko Online</h1>
+      <div class="flex-center">
+        <div class="text-sm">Theme: <strong>Hijau Sage</strong></div>
+      </div>
+    </header>
+    <div class="container">
+      <aside>
+        <nav>
+          <a href="#orders" class="active" data-section="orders">Pesanan</a>
+          <a href="#products" data-section="products">Produk</a>
+          <a href="#revenue" data-section="revenue">Omset</a>
+          <a href="#reports" data-section="reports">Laporan</a>
+        </nav>
+        <hr>
+        <div class="muted">Quick Actions</div>
+        <div style="margin-top:.6rem">
+          <button class="btn" id="btn-add-product">+ Input Barang</button>
+        </div>
+      </aside>
+
+      <main>
+        <section id="orders" class="card section">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <h2>Daftar Pesanan</h2>
+            <div class="toolbar">
+              <input id="filter-order" placeholder="Cari order id / nama" />
+              <select id="filter-status">
+                <option value="">Semua status</option>
+                <option value="paid">Lunas</option>
+                <option value="pending">Pending</option>
+                <option value="cancelled">Dibatalkan</option>
+              </select>
+              <button class="btn" id="btn-refresh-orders">Refresh</button>
+            </div>
+          </div>
+          <div style="margin-top:.75rem;overflow:auto">
+            <table id="orders-table">
+              <thead>
+                <tr><th>Order ID</th><th>Tanggal</th><th>Pembeli</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Aksi</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="products" class="card section" style="display:none">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <h2>Kelola Produk</h2>
+            <div>
+              <button class="btn" id="btn-open-add">+ Tambah Produk</button>
+            </div>
+          </div>
+          <div style="margin-top:.75rem">
+            <table id="products-table">
+              <thead><tr><th>ID</th><th>Nama</th><th>Stok</th><th>Harga</th><th>Kategori</th><th>Aksi</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="revenue" class="card section" style="display:none">
+          <h2>Omset (Pendapatan)</h2>
+          <div class="row" style="margin-top:.5rem">
+            <div class="col">
+              <div class="card">
+                <div class="muted">Pilih rentang</div>
+                <div class="form-row" style="margin-top:.4rem">
+                  <input type="date" id="rev-date-start" />
+                  <input type="date" id="rev-date-end" />
+                  <button class="btn" id="btn-calc-range">Hitung</button>
+                </div>
+                <div style="margin-top:.6rem" id="rev-range-result"></div>
+              </div>
+            </div>
+            <div class="col" style="max-width:360px">
+              <div class="stats">
+                <div class="stat">
+                  <div class="muted">Omset Hari Ini</div>
+                  <div id="omset-today" style="font-size:1.1rem;font-weight:700">Rp 0</div>
+                </div>
+                <div class="stat">
+                  <div class="muted">Omset Bulanan</div>
+                  <div id="omset-month" style="font-size:1.1rem;font-weight:700">Rp 0</div>
+                </div>
+                <div class="stat">
+                  <div class="muted">Omset Tahunan</div>
+                  <div id="omset-year" style="font-size:1.1rem;font-weight:700">Rp 0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="reports" class="card section" style="display:none">
+          <h2>Laporan Transaksi</h2>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-top:.5rem">
+            <select id="report-type"><option value="orders">Semua Order</option><option value="payments">Pembayaran</option></select>
+            <button class="btn" id="btn-export-csv">Export CSV</button>
+            <button class="btn ghost" id="btn-print">Cetak</button>
+          </div>
+          <div style="margin-top:.75rem;overflow:auto">
+            <table id="report-table"><thead></thead><tbody></tbody></table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Modal simple for add/edit product -->
+    <div id="modal">
+      <div style="background:#fff;padding:1rem;border-radius:8px;min-width:320px;max-width:680px">
+        <h3 id="modal-title">Tambah Produk</h3>
+        <div style="margin-top:.5rem">
+          <div class="form-row"><input id="p-name" placeholder="Nama produk" /></div>
+          <div class="form-row"><input id="p-price" placeholder="Harga (angka)" type="number" /></div>
+          <div class="form-row"><input id="p-stock" placeholder="Stok" type="number" /></div>
+          <div class="form-row"><input id="p-cat" placeholder="Kategori" /></div>
+          <div class="form-row"><textarea id="p-desc" placeholder="Deskripsi" rows="3"></textarea></div>
+          <div style="display:flex;justify-content:flex-end;gap:.5rem;margin-top:.5rem">
+            <button class="btn ghost" id="modal-cancel">Batal</button>
+            <button class="btn" id="modal-save">Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simple admin front-end using localStorage as storage
+      const qs = s=> document.querySelector(s);
+      const qsa = s=> Array.from(document.querySelectorAll(s));
+
+      // Navigation
+      qsa('nav a').forEach(a=> a.addEventListener('click', e=>{
+        e.preventDefault();
+        qsa('nav a').forEach(x=> x.classList.remove('active'));
+        a.classList.add('active');
+        showSection(a.dataset.section);
+      }));
+
+      function showSection(name){
+        qsa('.section').forEach(s=> s.style.display = 'none');
+        qs('#'+name).style.display = 'block';
+      }
+
+      // Data helpers
+      function loadProducts(){
+        return JSON.parse(localStorage.getItem('admin_products')||'[]');
+      }
+      function saveProducts(list){ localStorage.setItem('admin_products', JSON.stringify(list)); }
+      function loadOrders(){
+        return JSON.parse(localStorage.getItem('admin_orders')||'[]');
+      }
+      function saveOrders(list){ localStorage.setItem('admin_orders', JSON.stringify(list)); }
+
+      // Initialize sample data if empty
+      if(!localStorage.getItem('admin_products')){
+        const sample = [
+          {id:generateId(),'name':'Kemeja Batik','price':150000,'stock':10,category:'Pakaian',desc:'Kemeja batik pria'},
+          {id:generateId(),'name':'Sepatu Sneakers','price':350000,'stock':5,category:'Sepatu',desc:'Sneakers casual'},
+          {id:generateId(),'name':'Tas Ransel','price':220000,'stock':8,category:'Aksesoris',desc:'Ransel travel'}
+        ]; saveProducts(sample);
+      }
+      if(!localStorage.getItem('admin_orders')){
+        const now = new Date();
+        const sampleOrders = [
+          {id:'ORD-'+Math.floor(Math.random()*90000+10000),date:now.toISOString(),customer:'Andi',items:[{name:'Kemeja Batik',price:150000,qty:1}],total:150000,payment:'Transfer',status:'paid'},
+          {id:'ORD-'+Math.floor(Math.random()*90000+10000),date:new Date(now.getTime()-86400000).toISOString(),customer:'Budi',items:[{name:'Tas Ransel',price:220000,qty:1}],total:220000,payment:'COD',status:'pending'}
+        ]; saveOrders(sampleOrders);
+      }
+
+      // Products UI
+      const productsTableBody = qs('#products-table tbody');
+      function renderProducts(){
+        const products = loadProducts();
+        productsTableBody.innerHTML = '';
+        for(const p of products){
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${p.id}</td><td>${escapeHtml(p.name)}</td><td>${p.stock}</td><td>Rp ${formatNumber(p.price)}</td><td>${escapeHtml(p.category||'')}</td><td><button class='btn ghost edit' data-id='${p.id}'>Edit</button> <button class='btn ghost del' data-id='${p.id}'>Hapus</button></td>`;
+          productsTableBody.appendChild(tr);
+        }
+        qsa('#products-table .edit').forEach(b=> b.addEventListener('click',e=> openEditProduct(e.target.dataset.id)));
+        qsa('#products-table .del').forEach(b=> b.addEventListener('click',e=> deleteProduct(e.target.dataset.id)));
+      }
+
+      function openEditProduct(id){
+        const products = loadProducts();
+        const p = products.find(x=>x.id===id); if(!p) return alert('Produk tidak ditemukan');
+        showModal('Edit Produk', p);
+      }
+
+      function deleteProduct(id){
+        if(!confirm('Hapus produk ini?')) return;
+        let products = loadProducts();
+        products = products.filter(x=> x.id!==id);
+        saveProducts(products); renderProducts();
+      }
+
+      // Orders UI
+      const ordersTbody = qs('#orders-table tbody');
+      function renderOrders(){
+        const list = loadOrders();
+        const q = qs('#filter-order').value.toLowerCase();
+        const statusFilter = qs('#filter-status').value;
+        ordersTbody.innerHTML = '';
+        for(const o of list){
+          if(q && !(o.id.toLowerCase().includes(q) || (o.customer||'').toLowerCase().includes(q))) continue;
+          if(statusFilter && o.status !== statusFilter) continue;
+          const tr = document.createElement('tr');
+          const itemsSummary = (o.items||[]).map(i=> i.name+' x'+i.qty).join(', ');
+          tr.innerHTML = `<td>${o.id}</td><td>${new Date(o.date).toLocaleString()}</td><td>${escapeHtml(o.customer||'')}</td><td>${escapeHtml(itemsSummary)}</td><td>Rp ${formatNumber(o.total)}</td><td>${escapeHtml(o.payment||'')}</td><td>${o.status}</td><td><button class='btn ghost view' data-id='${o.id}'>Lihat</button> <button class='btn mark' data-id='${o.id}'>Tandai Lunas</button></td>`;
+          ordersTbody.appendChild(tr);
+        }
+        qsa('#orders-table .view').forEach(b=> b.addEventListener('click',e=> viewOrder(e.target.dataset.id)));
+        qsa('#orders-table .mark').forEach(b=> b.addEventListener('click',e=> markPaid(e.target.dataset.id)));
+      }
+
+      function viewOrder(id){
+        const o = loadOrders().find(x=> x.id===id);
+        if(!o) return alert('Order tidak ditemukan');
+        alert('Order '+o.id+'\nPembeli: '+o.customer+'\nTotal: Rp '+formatNumber(o.total)+'\nStatus: '+o.status+'\nPayment: '+(o.payment||'-'));
+      }
+      function markPaid(id){
+        const orders = loadOrders();
+        const o = orders.find(x=> x.id===id); if(!o) return;
+        o.status = 'paid'; saveOrders(orders); renderOrders(); renderRevenue();
+      }
+
+      // Revenue calculations
+      function calcRevenueRange(start, end){
+        const orders = loadOrders();
+        const s = start? new Date(start).getTime(): -1;
+        const e = end? new Date(end).getTime(): Infinity;
+        return orders.filter(o=>{
+          const t = new Date(o.date).getTime();
+          return o.status==='paid' && t>=s && t<=e;
+        }).reduce((acc,o)=> acc+ (o.total||0), 0);
+      }
+
+      function renderRevenue(){
+        const today = new Date();
+        const startDay = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString();
+        const endDay = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1).toISOString();
+        const daily = calcRevenueRange(startDay, endDay);
+        const startMonth = new Date(today.getFullYear(), today.getMonth(),1).toISOString();
+        const endMonth = new Date(today.getFullYear(), today.getMonth()+1,1).toISOString();
+        const monthly = calcRevenueRange(startMonth, endMonth);
+        const startYear = new Date(today.getFullYear(),0,1).toISOString();
+        const endYear = new Date(today.getFullYear()+1,0,1).toISOString();
+        const yearly = calcRevenueRange(startYear, endYear);
+        qs('#omset-today').textContent = 'Rp '+formatNumber(daily);
+        qs('#omset-month').textContent = 'Rp '+formatNumber(monthly);
+        qs('#omset-year').textContent = 'Rp '+formatNumber(yearly);
+      }
+
+      // Reports
+      function renderReport(){
+        const type = qs('#report-type').value;
+        const orders = loadOrders();
+        const thead = qs('#report-table thead');
+        const tbody = qs('#report-table tbody');
+        tbody.innerHTML = '';
+        if(type==='orders'){
+          thead.innerHTML = '<tr><th>Order ID</th><th>Tanggal</th><th>Pembeli</th><th>Total</th><th>Payment</th><th>Status</th></tr>';
+          for(const o of orders){
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${o.id}</td><td>${new Date(o.date).toLocaleString()}</td><td>${escapeHtml(o.customer||'')}</td><td>Rp ${formatNumber(o.total)}</td><td>${escapeHtml(o.payment||'')}</td><td>${o.status}</td>`;
+            tbody.appendChild(tr);
+          }
+        } else {
+          thead.innerHTML = '<tr><th>Order ID</th><th>Tanggal</th><th>Pembeli</th><th>Payment</th><th>Jumlah</th><th>Status</th></tr>';
+          for(const o of orders){
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${o.id}</td><td>${new Date(o.date).toLocaleString()}</td><td>${escapeHtml(o.customer||'')}</td><td>${escapeHtml(o.payment||'')}</td><td>Rp ${formatNumber(o.total)}</td><td>${o.status}</td>`;
+            tbody.appendChild(tr);
+          }
+        }
+      }
+
+      // Export CSV
+      function exportCSV(){
+        const type = qs('#report-type').value;
+        const orders = loadOrders();
+        const rows = [];
+        if(type==='orders'){
+          rows.push(['Order ID','Tanggal','Pembeli','Items','Total','Payment','Status']);
+          for(const o of orders) rows.push([o.id,new Date(o.date).toLocaleString(),o.customer,(o.items||[]).map(i=>i.name+' x'+i.qty).join('; '),o.total,o.payment,o.status]);
+        } else {
+          rows.push(['Order ID','Tanggal','Pembeli','Payment','Total','Status']);
+          for(const o of orders) rows.push([o.id,new Date(o.date).toLocaleString(),o.customer,o.payment,o.total,o.status]);
+        }
+        const csv = rows.map(r=> r.map(c=> '"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+        const blob = new Blob([csv],{type:'text/csv'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = (type)+'-report.csv'; a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      // Modal / product save
+      const modal = qs('#modal');
+      let editingId = null;
+      function showModal(title, product){
+        qs('#modal-title').textContent = title;
+        modal.style.display = 'flex';
+        if(product){
+          editingId = product.id;
+          qs('#p-name').value = product.name||'';
+          qs('#p-price').value = product.price||0;
+          qs('#p-stock').value = product.stock||0;
+          qs('#p-cat').value = product.category||'';
+          qs('#p-desc').value = product.desc||'';
+        } else {
+          editingId = null;
+          qs('#p-name').value = qs('#p-price').value = qs('#p-stock').value = qs('#p-cat').value = qs('#p-desc').value = '';
+        }
+      }
+      qs('#modal-cancel').addEventListener('click', ()=> modal.style.display='none');
+      qs('#modal-save').addEventListener('click', ()=>{
+        const name = qs('#p-name').value.trim();
+        const price = Number(qs('#p-price').value) || 0;
+        const stock = Number(qs('#p-stock').value) || 0;
+        const category = qs('#p-cat').value.trim();
+        const desc = qs('#p-desc').value.trim();
+        if(!name) return alert('Nama produk wajib');
+        let products = loadProducts();
+        if(editingId){
+          const idx = products.findIndex(x=> x.id===editingId);
+          products[idx] = {...products[idx],name,price,stock,category,desc};
+        } else {
+          products.push({id:generateId(),name,price,stock,category,desc});
+        }
+        saveProducts(products); renderProducts(); modal.style.display='none';
+      });
+
+      // Utilities
+      function generateId(){ return 'P'+Math.random().toString(36).slice(2,9).toUpperCase(); }
+      function formatNumber(n){ return Number(n).toLocaleString('id-ID'); }
+      function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+
+      // Hooks
+      qs('#btn-open-add').addEventListener('click', ()=> showModal('Tambah Produk'));
+      qs('#btn-add-product').addEventListener('click', ()=> { qsa('nav a').forEach(x=> x.classList.remove('active')); qs('nav a[data-section="products"]').classList.add('active'); showSection('products'); showModal('Tambah Produk'); });
+      qs('#btn-refresh-orders').addEventListener('click', renderOrders);
+      qs('#filter-order').addEventListener('input', renderOrders);
+      qs('#filter-status').addEventListener('change', renderOrders);
+
+      qs('#btn-calc-range').addEventListener('click', ()=>{
+        const s = qs('#rev-date-start').value; const e = qs('#rev-date-end').value; const total = calcRevenueRange(s? new Date(s).toISOString():null, e? new Date(e).toISOString():null);
+        qs('#rev-range-result').textContent = 'Total: Rp '+formatNumber(total);
+      });
+
+      qs('#report-type').addEventListener('change', renderReport);
+      qs('#btn-export-csv').addEventListener('click', exportCSV);
+      qs('#btn-print').addEventListener('click', ()=> window.print());
+
+      // initial render
+      renderProducts(); renderOrders(); renderRevenue(); renderReport();
+      // refresh revenue each minute in case data changed
+      setInterval(renderRevenue, 60000);
+    </script>
+  </body>
+</html>

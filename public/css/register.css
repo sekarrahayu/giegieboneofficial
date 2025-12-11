@@ -1,5 +1,5 @@
 body{
-    background-image: url('img/bganjay.png'); /* path ke gambarnya */
+    background-image: url('/img/bganjay.png'); /* path ke gambarnya */
     background-size: cover;   /* biar nutup seluruh layar */
     background-repeat: no-repeat; /* biar gak ngulang */
     background-attachment: fixed;
@@ -116,4 +116,3 @@ input{
     border: none;          
     outline: none; 
 }
-

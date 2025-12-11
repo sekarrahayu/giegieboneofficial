@@ -25,49 +25,44 @@ productCards.forEach((card) => {
 });
 
 function updateCheckout() {
-    checkoutList.innerHTML = "";  // Bersihkan list
-    let total = 0;
+  checkoutList.innerHTML = "";  
+  let total = 0;
 
-    if (cart.length === 0) {
-        const li = document.createElement("li");
-        li.className = "list-group-item text-center";
-        li.textContent = "Kamu belum memasukkan apapun ke keranjang.";
-        checkoutList.appendChild(li);
-    
-        // sembunyikan footer (total + tombol)
-        checkoutFooter.style.display = "none";
-        return;
-    }
+  if (cart.length === 0) {
+      const li = document.createElement("li");
+      li.className = "list-group-item text-center py-3";
+      li.textContent = "You haven't added anything to your cart.";
+      checkoutList.appendChild(li);
 
-    checkoutFooter.style.display = "flex"; 
+      checkoutFooter.style.display = "none";
+      checkoutTotal.textContent = "Rp 0";
 
-    // Tampilkan produk di cart
-    cart.forEach((item, index) => {
-        total += item.price;
+      return;
+  }
 
-        const li = document.createElement("li");
-        li.className = "list-group-item d-flex justify-content-between align-items-center";
-        li.innerHTML = `
-            <span>${item.title} - Rp ${item.price.toLocaleString('id-ID')}</span>
-            <button class="btn btn-danger btn-sm">Hapus</button>
-        `;
+  checkoutFooter.style.display = "flex";
 
-        // Event listener tombol hapus item
-        li.querySelector("button").addEventListener("click", () => {
-            cart.splice(index, 1);  // Hapus item
-            updateCheckout();       // Update tampilan
-        });
+  cart.forEach((item, index) => {
+      total += item.price;
 
-        checkoutList.appendChild(li);
-    });
+      const li = document.createElement("li");
+      li.className = "list-group-item d-flex justify-content-between align-items-center";
+      li.innerHTML = `
+          <span>${item.title} - Rp ${item.price.toLocaleString('id-ID')}</span>
+          <button class="btn btn-danger btn-sm">Delete</button>
+      `;
 
-    // Tampilkan total & tombol
-    checkoutTotal.parentElement.style.display = "block";
-    clearCartBtn.style.display = "inline-block";
+      li.querySelector("button").addEventListener("click", () => {
+          cart.splice(index, 1);
+          updateCheckout();
+      });
 
-    // Format total harga
-    checkoutTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+      checkoutList.appendChild(li);
+  });
+
+  checkoutTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
 }
+
 
 clearCartBtn.addEventListener("click", () => {
     cart.length = 0;      // kosongkan array cart
@@ -77,6 +72,7 @@ clearCartBtn.addEventListener("click", () => {
 
 // membuka cart melalui icon
 cartIcon.addEventListener('click', () => {
-    const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'));
-    checkoutModal.show();
+  updateCheckout(); // ⬅ WAJIB supaya cart kosong langsung muncul pesan
+  const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'));
+  checkoutModal.show();
 });
