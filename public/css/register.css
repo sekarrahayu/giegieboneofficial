@@ -116,3 +116,217 @@ input{
     border: none;          
     outline: none; 
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .leftnavbar {
+        width: 40%;
+        padding-inline: 30px;
+    }
+    
+    .rightnavbar {
+        width: 60%;
+        padding-left: 20px;
+    }
+    
+    .textgiegiebone {
+        font-size: 45px;
+    }
+    
+    .wrapcardlogin {
+        padding-inline: 300px;
+        padding-block: 20px;
+    }
+    
+    .cardlogin {
+        width: 350px;
+        height: 480px;
+        padding-inline: 15%;
+        padding-block: 40px;
+    }
+    
+    .registertext {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wrapnavbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .leftnavbar {
+        width: 100%;
+        height: auto;
+        padding-block: 15px;
+        text-align: center;
+    }
+    
+    .rightnavbar {
+        width: 100%;
+        height: auto;
+        padding-left: 0;
+        padding-block: 10px;
+    }
+    
+    .textgiegiebone {
+        font-size: 35px;
+    }
+    
+    .atastext {
+        margin-top: -80px;
+    }
+    
+    .navbar {
+        width: 80%;
+        gap: 10px;
+    }
+    
+    .wrapcardlogin {
+        padding-inline: 20px;
+        padding-block: 15px;
+    }
+    
+    .cardlogin {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        padding-inline: 20px;
+        padding-block: 30px;
+    }
+    
+    .registertext {
+        font-size: 32px;
+    }
+    
+    .formregister {
+        margin-top: 10%;
+    }
+    
+    #username, #password, #address, .submit {
+        height: 40px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .textgiegiebone {
+        font-size: 28px;
+    }
+    
+    .atastext {
+        height: 10px;
+        margin-top: -60px;
+    }
+    
+    .navbar {
+        width: 90%;
+        gap: 5px;
+    }
+    
+    #icon {
+        width: 70px;
+    }
+    
+    .registertext {
+        font-size: 24px;
+    }
+    
+    .cardlogin {
+        max-width: 100%;
+        padding-inline: 15px;
+        padding-block: 20px;
+    }
+    
+    #username, #password, #address {
+        height: 35px;
+        font-size: 13px;
+    }
+    
+    .submit {
+        height: 35px;
+        font-size: 13px;
+    }
+}
+
+/* More granular breakpoints for mobile -> desktop */
+
+/* Very small phones (320px) */
+@media (max-width: 320px) {
+    .textgiegiebone { font-size: 22px; }
+    .atastext { margin-top: -40px; }
+    .navbar { width: 95%; }
+    .wrapcardlogin { padding-inline: 8px; padding-block: 12px; }
+    .cardlogin { max-width: 280px; padding-inline: 10px; padding-block: 20px; }
+    .registertext { font-size: 20px; }
+    #username,#password,#address { height: 36px; font-size: 13px; }
+    .submit { height: 36px; font-size: 13px; }
+}
+
+/* Small phones / large phones (321 - 375) */
+@media (min-width: 321px) and (max-width: 375px) {
+    .textgiegiebone { font-size: 24px; }
+    .atastext { margin-top: -55px; }
+    .wrapcardlogin { padding-inline: 12px; }
+    .cardlogin { max-width: 300px; padding-block: 24px; }
+    .registertext { font-size: 22px; }
+}
+
+/* Typical large phones (376 - 480) */
+@media (min-width: 376px) and (max-width: 480px) {
+    .textgiegiebone { font-size: 28px; }
+    .wrapcardlogin { padding-inline: 18px; }
+    .cardlogin { max-width: 340px; padding-block: 28px; }
+    .registertext { font-size: 26px; }
+}
+
+/* Phablets / small tablets (481 - 767) */
+@media (min-width: 481px) and (max-width: 767px) {
+    .textgiegiebone { font-size: 32px; }
+    .wrapcardlogin { padding-inline: 30px; padding-block: 30px; }
+    .cardlogin { max-width: 360px; padding-block: 40px; }
+    .registertext { font-size: 30px; }
+}
+
+/* Small laptops (768 - 1024) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .wrapnavbar { flex-direction: row; }
+    .leftnavbar { width: 45%; padding-inline: 30px; }
+    .rightnavbar { width: 55%; padding-left: 20px; }
+    .textgiegiebone { font-size: 40px; }
+    .wrapcardlogin { padding-inline: 220px; padding-block: 30px; }
+    .cardlogin { width: 380px; height: 520px; padding-block: 40px; }
+    .registertext { font-size: 40px; }
+}
+
+/* Regular desktops (1025 - 1365) */
+@media (min-width: 1025px) and (max-width: 1365px) {
+    .wrapcardlogin { padding-inline: 360px; padding-block: 40px; }
+    .cardlogin { width: 420px; height: 560px; padding-block: 50px; }
+    .textgiegiebone { font-size: 56px; }
+    .registertext { font-size: 52px; }
+}
+
+/* Large desktops (1366 - 1599) */
+@media (min-width: 1366px) and (max-width: 1599px) {
+    .wrapcardlogin { padding-inline: 500px; padding-block: 60px; }
+    .cardlogin { width: 480px; height: 620px; }
+    .textgiegiebone { font-size: 64px; }
+    .registertext { font-size: 60px; }
+}
+
+/* Extra large desktops (1600 - 1919) */
+@media (min-width: 1600px) and (max-width: 1919px) {
+    .wrapcardlogin { padding-inline: 700px; padding-block: 80px; }
+    .cardlogin { width: 520px; height: 700px; }
+}
+
+/* Ultra wide / 4k and above (1920px+) */
+@media (min-width: 1920px) {
+    .wrapcardlogin { padding-inline: 900px; padding-block: 100px; }
+    .cardlogin { width: 600px; height: 800px; }
+    .textgiegiebone { font-size: 72px; }
+    .registertext { font-size: 72px; }
+}
+
